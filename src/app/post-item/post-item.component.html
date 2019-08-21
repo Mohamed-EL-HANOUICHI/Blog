@@ -1,0 +1,9 @@
+<div class="card" [ngStyle]="{'background-color':list.loveIts > 0 ? 'green' : list.loveIts < 0 ?'red':'white' }">
+  <h2>{{list.title}}</h2>
+  <p>{{list.content}}</p>
+  <p class="posit">{{list.created_at| date: 'dd-MM-yyyy'}}</p>
+  <div class ='btn-group'>
+  <button type="button" class="btn btn-primary" (click)="Onlike()" class="spacer">like</button>
+  <button type="button" class="btn btn-primary" (click)="Ondislike()" class="spacer">dislike</button>
+  </div>
+</div>
