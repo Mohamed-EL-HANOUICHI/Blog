@@ -1,4 +1,6 @@
 import { Component, OnInit,Input } from '@angular/core';
+import {PostService} from './../services/post.service';
+import { PostComponent,Post } from './../post/post.component';
 
 @Component({
   selector: 'app-post-item',
@@ -9,7 +11,7 @@ export class PostItemComponent implements OnInit {
 
   @Input() list : any;
 
-  constructor() { }
+  constructor(private postService: PostService) { }
 
   ngOnInit() {
   }
@@ -20,5 +22,11 @@ export class PostItemComponent implements OnInit {
     this.list.loveIts--;
 
   }
+  Onsuppremer(){
+    this.postService.postSubject.subscribe(
+       (Posts:any[]) => {
+          Posts.splice(Posts.indexOf(this.list),1);
+       })
 
+  }
 }
