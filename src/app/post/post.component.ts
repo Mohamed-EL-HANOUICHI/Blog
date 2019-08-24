@@ -15,8 +15,10 @@ export class PostComponent implements OnInit {
   }
 }
 export class Post {
+  id:Number=0;
   title: string;
   content: string;
-  loveIts:Number;
-  created_at: Date;
+  loveIts:Number = 0 ;
+  created_at: Date = new Date();
+
 }
