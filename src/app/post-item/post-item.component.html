@@ -1,7 +1,6 @@
 <div class="card" [ngStyle]="{'background-color':list.loveIts > 0 ? 'green' : list.loveIts < 0 ?'red':'white' }">
   <h2>{{list.title}}</h2>
   <p>{{list.content}}</p>
-  <p>{{list.id}}</p>
   <p class="posit">{{list.created_at| date: 'dd/MM/yyyy, hh:mm'}}</p>
 
   <div class="btn-group">

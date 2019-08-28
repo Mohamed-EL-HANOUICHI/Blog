@@ -26,7 +26,12 @@ export class PostItemComponent implements OnInit {
     this.postService.postSubject.subscribe(
        (Posts:any[]) => {
           Posts.splice(Posts.indexOf(this.list),1);
-       })
+
+
+
+       });
+       this.postService.emitPostSubject(); 
+
 
   }
 }

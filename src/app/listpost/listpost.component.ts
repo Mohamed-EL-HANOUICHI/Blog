@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {PostService} from './../services/post.service';
 import { Subscription } from 'rxjs/Subscription';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-listpost',
@@ -11,7 +12,7 @@ export class ListpostComponent implements OnInit {
   Posts : any [];
   postSubscription: Subscription;
 
-  constructor(private postService: PostService) { }
+  constructor(private postService: PostService,private route: Router) { }
 
   ngOnInit() {
     this.postSubscription = this.postService.postSubject.subscribe(
@@ -20,6 +21,14 @@ export class ListpostComponent implements OnInit {
       }
     );
     this.postService.emitPostSubject();
+  }
+  onSave(){
+    this.postService.savePostsToServer();
+  }
+  onShow(){
+    this.postService.afficherPostsFromServer();
+    this.route.navigate(['/posts']);
+
   }
 
 }

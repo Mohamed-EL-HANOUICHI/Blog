@@ -1,13 +1,18 @@
 import { Subject } from 'rxjs/Subject';
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import {Router} from "@angular/router";
+import { PostComponent,Post} from './../post/post.component';
 
 @Injectable()
 export class PostService{
 
+  constructor(private http: HttpClient, private route: Router) { }
+
 
  postSubject = new Subject<any[]>();
 
-  private Posts = [
+  private Posts  = [
     {
      id:0,
      title:'Mon premier Post',
@@ -35,6 +40,33 @@ export class PostService{
     this.postSubject.next(this.Posts.slice());
   }
 
+  savePostsToServer() {
+    this.http
+      .put('https://blog-15def.firebaseio.com/Posts.json', this.Posts)
+      .subscribe(
+        () => {
 
+          console.log('Enregistrement terminé !');
+        },
+        (error) => {
+          console.log('Erreur ! : ' + error);
+        }
+      );
+  }
+  afficherPostsFromServer() {
+  this.http
+    .get<any[]>('https://blog-15def.firebaseio.com/Posts.json')
+    .subscribe(
+      (response) => {
+        this.Posts=response;
+      },
+      (error) => {
+        console.log('Erreur ! : ' + error);
+      }
+    );
+
+
+
+}
 
 }
